@@ -14,7 +14,7 @@ import net.sf.jasperreports.engine.JRException;
 
 @RestController
 @RequestMapping("/user")
-public class UserReportRestController {
+public class ReportUserRestController {
 
 	@Autowired
 	private ReportService reportService;
