@@ -1,6 +1,8 @@
 package org.la.ecom.report.rest.controller;
 
+import org.dozer.DozerBeanMapper;
 import org.la.ecom.mysql.api.dto.UserDTO;
+import org.la.ecom.report.api.dto.ReportDTO;
 import org.la.ecom.report.model.Report;
 import org.la.ecom.report.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,21 @@ public class ReportUserRestController {
 	@Autowired
 	private ReportService reportService;
 	
+	@Autowired
+	private DozerBeanMapper mapper;
+	
 	@PostMapping("/detail")
-	public Report getUserDetailReport(@RequestBody UserDTO userDTO) throws JRException {
+	public ReportDTO getUserDetailReport(@RequestBody UserDTO userDTO) throws JRException {
 		
 		Report userDetailReport = reportService.getUserDetailReport(userDTO);
 		
-		return userDetailReport;
+		ReportDTO reportDTO = new ReportDTO();
 		
+		if(userDetailReport!=null) {
+			reportDTO = mapper.map(userDetailReport, ReportDTO.class);
+		}
+		
+		return reportDTO;
 	}
 	
 	@GetMapping("/test")

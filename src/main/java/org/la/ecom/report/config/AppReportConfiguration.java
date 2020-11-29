@@ -3,6 +3,7 @@ package org.la.ecom.report.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dozer.DozerBeanMapper;
 import org.la.ecom.document.api.client.DocumentClient;
 import org.la.ecom.mysql.api.client.MysqlClient;
 import org.la.ecom.notification.api.client.NotificationClient;
@@ -49,5 +50,10 @@ public class AppReportConfiguration {
 	@Bean
 	public DocumentClient documentClient() {
 		return new DocumentClient();
+	}
+	
+	@Bean
+	public DozerBeanMapper dozerBeanMapper() {
+		return new DozerBeanMapper();
 	}
 }

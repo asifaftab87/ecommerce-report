@@ -13,6 +13,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
 
 @Repository
 public class ReportDao {
@@ -38,14 +39,19 @@ public class ReportDao {
 			parameters.put("dob", new java.sql.Date(userDTO.getDob().getTime()));
 			parameters.put("email", userDTO.getEmail());
 			parameters.put("contactNum", userDTO.getContactNum());
-			
-			print = JasperFillManager.fillReport(jasperReport, parameters);
+			JRBeanArrayDataSource dataSource = new JRBeanArrayDataSource(new UserDTO[] {userDTO}); 
+					
+			print = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return print;
+	}
+	
+	public void mes() {
+		
 	}
 
 }
